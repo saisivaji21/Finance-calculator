@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Loan Calculator</title>
+
+<link rel="stylesheet"
+href="css/style.css">
+</head>
+
+<body>
+
+<a href="index.html" class="back-btn">
+⬅ Back to Home
+</a>
+
+<div class="loan-hero">
+
+<h1>🏦 Loan Approval Center</h1>
+
+<p>
+Plan your loan like a pro
+</p>
+
+</div>
+
+<div class="loan-card">
+
+<input type="number"
+id="loanAmount"
+placeholder="Loan Amount">
+
+<input type="number"
+id="interest"
+placeholder="Interest Rate (%)">
+
+<input type="number"
+id="years"
+placeholder="Loan Duration (Years)">
+
+<button onclick="calculateLoan()">
+
+Analyze Loan 🏦
+
+</button>
+
+<div class="loan-results">
+
+<div class="loan-result">
+
+<h3>Monthly EMI</h3>
+
+<h2 id="emi">
+₹0
+</h2>
+
+</div>
+
+<div class="loan-result">
+
+<h3>Total Interest</h3>
+
+<h2 id="interestAmount">
+₹0
+</h2>
+
+</div>
+
+<div class="loan-result">
+
+<h3>Total Payment</h3>
+
+<h2 id="totalPayment">
+₹0
+</h2>
+
+</div>
+
+</div>
+
+<div class="score-box">
+
+<h3>Loan Health Score</h3>
+
+<div class="score">
+
+<div
+id="scoreFill"
+class="score-fill">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function calculateLoan(){
+
+let P =
+Number(
+document.getElementById(
+"loanAmount").value);
+
+let annualRate =
+Number(
+document.getElementById(
+"interest").value);
+
+let years =
+Number(
+document.getElementById(
+"years").value);
+
+let r =
+annualRate/12/100;
+
+let n =
+years*12;
+
+let emi =
+(P*r*Math.pow(1+r,n))/
+(Math.pow(1+r,n)-1);
+
+let total =
+emi*n;
+
+let interest =
+total-P;
+
+document.getElementById("emi")
+.innerHTML=
+"₹"+emi.toFixed(2);
+
+document.getElementById(
+"interestAmount")
+.innerHTML=
+"₹"+interest.toFixed(2);
+
+document.getElementById(
+"totalPayment")
+.innerHTML=
+"₹"+total.toFixed(2);
+saveHistory(
+"Loan EMI: ₹" +
+emi.toFixed(2)
+);
+let score =
+Math.max(
+20,
+100-(annualRate*5)
+);
+
+document.getElementById(
+"scoreFill")
+.style.width=
+score+"%";
+
+}
+
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>

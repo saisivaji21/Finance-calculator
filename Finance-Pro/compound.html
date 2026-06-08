@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Compound Interest Calculator</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a href="index.html" class="back-btn">
+⬅ Back to Home
+</a>
+<div class="hero">
+
+    <h1>📈 Compound Interest Calculator</h1>
+
+    <p>See how your money grows over time</p>
+
+</div>
+
+<div class="calculator">
+
+    <input type="number"
+    id="principal"
+    placeholder="Principal Amount (₹)">
+
+    <input type="number"
+    id="rate"
+    placeholder="Annual Interest Rate (%)">
+
+    <input type="number"
+    id="time"
+    placeholder="Investment Period (Years)">
+
+    <button onclick="calculateCI()">
+        Calculate Growth
+    </button>
+
+    <div class="result-box">
+
+        <h2 id="result">
+            Final Amount: ₹0
+        </h2>
+
+        <h3 id="profit">
+            Profit Earned: ₹0
+        </h3>
+
+    </div>
+
+</div>
+
+<script>
+
+function calculateCI(){
+
+    let p =
+    Number(document.getElementById("principal").value);
+
+    let r =
+    Number(document.getElementById("rate").value);
+
+    let t =
+    Number(document.getElementById("time").value);
+
+    let amount =
+    p*Math.pow((1+r/100),t);
+
+    let profit =
+    amount-p;
+
+    document.getElementById("result").innerHTML =
+    "Final Amount: ₹"+amount.toFixed(2);
+
+    document.getElementById("profit").innerHTML =
+    "Profit Earned: ₹"+profit.toFixed(2);
+    saveHistory(
+"Compound Amount: ₹" +
+amount.toFixed(2)
+);
+}
+
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>
