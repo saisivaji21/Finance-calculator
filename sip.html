@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIP Wealth Builder</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a href="index.html" class="back-btn">
+⬅ Back to Home
+</a>
+
+<div class="sip-hero">
+💡 Investing ₹5,000/month at 12% for 10 years can potentially grow into a substantial corpus through compounding.
+    <h1>🚀 SIP Wealth Builder</h1>
+
+    <p>
+        Turn small monthly investments into large future wealth
+    </p>
+
+</div>
+
+<div class="sip-card">
+
+    <input type="number"
+    id="sipAmount"
+    placeholder="Monthly SIP Amount">
+
+    <input type="number"
+    id="sipRate"
+    placeholder="Expected Annual Return (%)">
+
+    <input type="number"
+    id="sipYears"
+    placeholder="Investment Duration (Years)">
+
+    <button onclick="calculateSIP()">
+        Build My Wealth 🚀
+    </button>
+
+    <div class="sip-results">
+
+        <div class="result-card">
+            <h3>Future Value</h3>
+            <h2 id="futureValue">₹0</h2>
+        </div>
+
+        <div class="result-card">
+            <h3>Invested</h3>
+            <h2 id="investedAmount">₹0</h2>
+        </div>
+
+        <div class="result-card">
+            <h3>Profit</h3>
+            <h2 id="wealthGained">₹0</h2>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function calculateSIP(){
+
+    let P = Number(document.getElementById("sipAmount").value);
+
+    let annualRate =
+    Number(document.getElementById("sipRate").value);
+
+    let years =
+    Number(document.getElementById("sipYears").value);
+
+    let r = annualRate/12/100;
+
+    let n = years*12;
+
+    let FV =
+    P *
+    ((Math.pow(1+r,n)-1)/r) *
+    (1+r);
+
+    let invested = P*n;
+
+    let gain = FV-invested;
+
+    document.getElementById("futureValue").innerHTML =
+    "₹"+FV.toFixed(2);
+
+    document.getElementById("investedAmount").innerHTML =
+    "₹"+invested.toFixed(2);
+
+    document.getElementById("wealthGained").innerHTML =
+    "₹"+gain.toFixed(2);
+    saveHistory(
+"SIP Future Value: ₹" +
+FV.toFixed(2)
+);
+}
+
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>
